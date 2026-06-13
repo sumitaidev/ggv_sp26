@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from google import genai
-from fpdf import FPDF
+from fpdf import FPDF # (fpdf2 still uses 'from fpdf', but the backend handles modern Python safely)
 
 # 1. Page Configuration
 st.set_page_config(page_title="AI Resume Builder", page_icon="📝", layout="centered")
@@ -113,7 +113,7 @@ if api_key:
                     pdf = PDFResume()
                     pdf.add_page()
                     pdf.set_auto_page_break(auto=True, margin=15)
-                    
+                    pdf_bytes = pdf.output()
                     # Add standard ASCII clean encoding parsing parameters
                     pdf.set_font("Arial", size=10)
                     pdf.set_text_color(50, 50, 50)
